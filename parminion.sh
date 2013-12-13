@@ -27,7 +27,7 @@ then
     else
         time parallel -j $NBCORES "minion -findallsols -split -timelimit $LONGER {} -solsout {}.solutions > {}.stdout ; mv {} {}.done" ::: *.minion
     fi
-    ./$0 $1 $2 $3
+    bash $0 $1 $2 $3
 else
     echo "Finished. No more *.minion files here."
 fi
