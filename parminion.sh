@@ -23,9 +23,9 @@ then
     echo "Starting with so many minion files: $NBMINIONS"
     if (( $NBMINIONS < $NBCORES ));
     then
-        time parallel -j $NBCORES "minion -findallsols -split -timelimit $SHORT  {} -solsout {}.solutions > {}.stdout ; mv {} {}.done" ::: *.minion
+        parallel -j $NBCORES "minion -findallsols -split -cpulimit $SHORT  {} -solsout {}.solutions > {}.stdout ; mv {} {}.done" ::: *.minion
     else
-        time parallel -j $NBCORES "minion -findallsols -split -timelimit $LONGER {} -solsout {}.solutions > {}.stdout ; mv {} {}.done" ::: *.minion
+        parallel -j $NBCORES "minion -findallsols -split -cpulimit $LONGER {} -solsout {}.solutions > {}.stdout ; mv {} {}.done" ::: *.minion
     fi
     bash $0 $1 $2 $3
 else
